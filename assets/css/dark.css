@@ -1,0 +1,46 @@
+/* Dark theme. Loaded as a plain file by load_css() in app.py — no Python
+   templating, so colors are written out directly instead of var(...). */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+html, body, [data-testid="stAppViewContainer"] {
+  background: #131412 !important;
+  color: #F0EFE9;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+[data-testid="stHeader"] { background: transparent; }
+#MainMenu { display: none; }
+
+.header {
+  font-size: 20px; font-weight: 600; letter-spacing: -0.01em; color: #F0EFE9;
+  padding-bottom: 8px; border-bottom: 1px solid #2E2F2B; margin-bottom: 12px;
+}
+
+.card {
+  background: #1C1D1A; border: 1px solid #2E2F2B; border-radius: 4px;
+  padding: 16px; margin-bottom: 12px; color: #F0EFE9;
+}
+
+.output-line { font-size: 14px; line-height: 1.6; color: #F0EFE9; }
+.ltr-output { direction: ltr; text-align: left; }
+.rtl-output { direction: rtl; text-align: right; }
+
+div[data-testid="stButton"] > button {
+  border: 1px solid #2E2F2B; border-radius: 3px; background: #1C1D1A;
+  color: #9A988E; font-family: 'IBM Plex Sans', sans-serif; font-size: 13px;
+  padding: 7px 16px; box-shadow: none;
+}
+div[data-testid="stButton"] > button:hover {
+  color: #F0EFE9; border-color: #3C3D38; background: #1C1D1A;
+}
+
+[data-testid="stFileUploaderDropzone"] {
+  background: transparent; border: 1px dashed #3C3D38 !important; border-radius: 3px;
+}
+
+[data-testid="stNumberInput"] input {
+  font-family: 'IBM Plex Mono', monospace; background: #1C1D1A; color: #F0EFE9;
+  border: 1px solid #2E2F2B; border-radius: 3px;
+}
+
+hr { border-color: #2E2F2B; }

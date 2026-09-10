@@ -1,13 +1,10 @@
-"""Theme tokens for the "DXF Tool - Maquette" design (IBM Plex type, warm
-neutral surfaces, single blue accent), with a light/dark token swap.
+"""Color tokens for the light/dark theme, shared by the Plotly heatmap
+(draw.py) and the deferred widget-state CSS (ui/css.py).
 
-The actual CSS rules live in styles.css next to this file; this module only
-turns the theme/language state into CSS custom properties and injects the
-stylesheet, so the rules can be edited as plain CSS instead of Python."""
+The page's own stylesheet is loaded directly from assets/css/dark.css or
+assets/css/default.css by app.py, so this module only holds Python-side
+values: the token dicts and the small per-widget CSS snippets below."""
 from __future__ import annotations
-
-from functools import lru_cache
-from pathlib import Path
 
 LIGHT = {
     "page": "#F5F4F0", "surface": "#FFFFFF", "ink": "#161714", "muted": "#6B6A63",
@@ -20,33 +17,6 @@ DARK = {
     "line": "#2E2F2B", "line-soft": "#262723", "accent": "#7FA8CE", "accent-hover": "#A8C4DD",
     "accent-soft": "#1E2830", "dashed": "#3C3D38", "hatch-a": "#232420", "hatch-b": "#1B1C19",
 }
-
-_CSS_FILE = Path(__file__).with_name("styles.css")
-
-
-@lru_cache(maxsize=1)
-def _stylesheet() -> str:
-    """Read styles.css once per process; Streamlit reruns the script on
-    every interaction, so caching avoids re-reading the file each time."""
-    return _CSS_FILE.read_text(encoding="utf-8")
-
-
-def inject(theme: str, rtl: bool) -> str:
-    tokens = DARK if theme == "dark" else LIGHT
-    css_vars = "\n".join(f"  --{k}: {v};" for k, v in tokens.items())
-    direction = "rtl" if rtl else "ltr"
-    return f"""
-<style>
-:root {{
-{css_vars}
-  --direction: {direction};
-}}
-</style>
-<style>
-{_stylesheet()}
-</style>
-"""
-
 
 _VARIANTS = {
     "pill_active": "border-color:var(--accent)!important;background:var(--accent-soft)!important;color:var(--accent)!important;",
